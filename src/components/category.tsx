@@ -3,7 +3,7 @@ import ProductCard from './product-card'
 import type Product from "@/types/product"
 import typeCategory from "@/types/category"
 
-export default function Category({ category, products }: { category: typeCategory, products: Array<Product> }){
+export default function Category({ category, products, whatsapp }: { category: typeCategory, products: Array<Product>, whatsapp: number }){
     return(
         <div className='space-y-8' key={category.id}>
             <div className="divider after:bg-gray-300 before:bg-gray-300">
@@ -11,7 +11,7 @@ export default function Category({ category, products }: { category: typeCategor
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 space-y-6 lg:space-y-0">
                 {products.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} whatsapp={whatsapp} />
                 ))}
             </div>
         </div>
