@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         title: elt.attributes.title,
         price: elt.attributes.price,
         image: `https://onepage-ecommerce-strapi-production.up.railway.app${elt.attributes.image.data.attributes.url}`,
-        categoryId: elt.attributes.category.data.id
+        categoryId: elt.attributes.category.data?.id || 0
     }))
 
     // FORMATTING PRODUCTS DATA
