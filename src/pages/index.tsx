@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // FETCHING PRODUCTS DATA
     const { data } = await Axios({
         method: 'GET',
-        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/produits?populate=*',
+        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/produits?populate=*&pagination[limit]=500',
         headers: {
             Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
         }
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // FETCHING CATEGORIES DATA
     const { data: categoriesRes } = await Axios({
         method: 'GET',
-        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/categories?populate=*',
+        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/categories?populate=*&pagination[limit]=500',
         headers: {
             Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
         }
