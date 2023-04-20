@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // FETCHING PARAMS
     const { data: paramsRes } = await Axios({
         method: 'GET',
-        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/page?populate=*',
+        url: `${process.env.API_ENDPOINT}/page?populate=*`,
         headers: {
             Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
         }
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // FETCHING PRODUCTS DATA
     const { data } = await Axios({
         method: 'GET',
-        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/produits?populate=*&pagination[limit]=500',
+        url: `${process.env.API_ENDPOINT}/produits?populate=*`,
         headers: {
             Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
         }
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     // FETCHING CATEGORIES DATA
     const { data: categoriesRes } = await Axios({
         method: 'GET',
-        url: 'https://onepage-ecommerce-strapi-production.up.railway.app/api/categories?populate=*&pagination[limit]=500',
+        url: `${process.env.API_ENDPOINT}/categories?populate=*`,
         headers: {
             Authorization: `Bearer ${process.env.STRAPI_API_KEY}`
         }
@@ -56,8 +56,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const page: Page = {
         title: paramsRes.data.attributes.title,
         whatsapp: paramsRes.data.attributes.whatsapp,
-        cover: `https://onepage-ecommerce-strapi-production.up.railway.app${paramsRes.data.attributes.cover.data.attributes.url}`,
-        avatar: `https://onepage-ecommerce-strapi-production.up.railway.app${paramsRes.data.attributes.avatar.data.attributes.url}`,
+        cover: `${process.env.BACKEND_URL}${paramsRes.data.attributes.cover.data.attributes.url}`,
+        avatar: `${process.env.BACKEND_URL}${paramsRes.data.attributes.avatar.data.attributes.url}`,
     }
 
     // FORMATTING PRODUCTS DATA
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         id: elt.id,
         title: elt.attributes.title,
         price: elt.attributes.price,
-        image: `https://onepage-ecommerce-strapi-production.up.railway.app${elt.attributes.image.data.attributes.url}`,
+        image: `${process.env.BACKEND_URL}${elt.attributes.image.data.attributes.url}`,
         categoryId: elt.attributes.category.data?.id || 0
     }))
 
